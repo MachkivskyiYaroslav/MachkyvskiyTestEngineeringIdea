@@ -1,0 +1,18 @@
+<app-header (clickHamburger)="onClick()"></app-header>
+
+<ng-sidebar-container >
+
+  <ng-sidebar  [sidebarClass]="'sidebar'"  [mode]="opened ? 'push': 'over'" [opened]="opened" [dock]="opened">
+
+          <form *ngIf="filterList$" class="filter-form" action="" [formGroup]="sidebarForm">
+            <mat-checkbox color="primary" checked="checked" *ngFor="let name of filterList$| myPipe"  (change)="onCheckBoxChecked($event,name)" value="{{name}}">{{name}}</mat-checkbox>
+            <button (click)="createComponent()">apply</button>
+          </form>
+  </ng-sidebar>
+
+
+  <div class="content" ng-sidebar-content >
+    <ng-template #content></ng-template>
+  </div>
+</ng-sidebar-container>
+

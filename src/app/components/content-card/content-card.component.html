@@ -1,0 +1,23 @@
+<div class="wrapper" #wrapper *ngIf="result">
+  <div class="container cocktail-list">
+    <div class="title">
+      {{requestData}}
+    </div>
+    <div class="cocktail row">
+      <div class="content col-sm-5 col-md-2"
+           *ngFor="let res of result | paginate: {id:requestData  ,itemsPerPage: 5, currentPage: p}">
+        <div class="image">
+          <img src="{{res.strDrinkThumb}}" alt="">
+        </div>
+        <div class="text">
+          {{res.strDrink}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="paginator" *ngIf="result">
+    <pagination-controls [id]="requestData" (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
